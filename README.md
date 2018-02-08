@@ -19,7 +19,7 @@ S3_SOURCE_BUCKET: RAW_FILES_WILL_GO_HERE
 S3_RESULT_BUCKET: RESULTS_WILL_GO_HERE
 ```
 
-### Crate bucket and upload data to S3
+### Create bucket and upload data to S3
 
 ```bash
 python upload.py
