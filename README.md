@@ -4,13 +4,13 @@ Example scripts for working with AWS S3 and Athena
 
 ## Usage
 
-### Install the requirements with pip
+### Install requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Create configuration file .config.yml
+### Update .config.yml
 
 ```yaml
 AWS_ACCESS: AWS_ACCESS_KEY
