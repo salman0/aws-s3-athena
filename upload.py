@@ -31,9 +31,9 @@ def main():
         
         # Upload data files to s3
         # http://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.upload_file
-        s3_client.upload_file('./data/MOCK_DATA.json', target_bucket, 'MOCK_DATA.json')
-        s3_client.upload_file('./data/MOCK_DATA.csv', target_bucket, 'MOCK_DATA.csv')
-        s3_client.upload_file('./data/MOCK_DATA.tsv', target_bucket, 'MOCK_DATA.tsv')
+        s3_client.upload_file('./data/MOCK_DATA.json', target_bucket, 'data/json/MOCK_DATA.json')
+        s3_client.upload_file('./data/MOCK_DATA.csv', target_bucket, 'data/csv/MOCK_DATA.csv')
+        s3_client.upload_file('./data/MOCK_DATA.tsv', target_bucket, 'data/tsv/MOCK_DATA.tsv')
 
 if __name__ == "__main__":
     sys.exit(main())
