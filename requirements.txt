@@ -1,0 +1,3 @@
+# required packages
+boto3==1.5.1
+pyYAML
