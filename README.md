@@ -1,7 +1,6 @@
 # aws-s3-athena
 Example scripts for working with AWS S3 and Athena
 
-
 ## Usage
 
 ### Install the requirements with pip
@@ -19,11 +18,17 @@ S3_SOURCE_BUCKET: RAW_FILES_WILL_GO_HERE
 S3_RESULT_BUCKET: RESULTS_WILL_GO_HERE
 ```
 
-### Crate bucket and upload data to S3
+### Create bucket and upload data to S3
 
 ```bash
-python upload.py
+python setup.py
 ```
+
+### Remove files loaded into S3 and delete bucket
+
+```bash
+python teardown.py
+``` 
 
 ## References
 
