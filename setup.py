@@ -22,16 +22,17 @@ def main():
         # https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket
         s3_client.create_bucket(Bucket=target_bucket)
         
+        test_files = ['/data/MOCK_DATA.json', '/data/MOCK_DATA.csv', '/data/MOCK_DATA.tsv']
+
         # Upload data files to s3
         # http://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.upload_file
-        s3_client.upload_file('./data/MOCK_DATA.json', target_bucket, 'MOCK_DATA.json')
-        s3_client.upload_file('./data/MOCK_DATA.csv', target_bucket, 'MOCK_DATA.csv')
-        s3_client.upload_file('./data/MOCK_DATA.tsv', target_bucket, 'MOCK_DATA.tsv')
+        for filename in test_files:
+            s3_client.upload_file("." + filename, target_bucket, filename)
 
         # Validate that each object is successfully uploaded into the bucket
         # https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.list_objects
         for obj in s3_client.list_objects(Bucket=target_bucket)['Contents']:
-            assert obj['Key'] in ['MOCK_DATA.json', 'MOCK_DATA.csv', 'MOCK_DATA.tsv']
+            assert obj['Key'] in test_files
 
 if __name__ == "__main__":
     sys.exit(main())

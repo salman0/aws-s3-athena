@@ -2,5 +2,4 @@
 
 AWS_ACCESS: AWS_ACCESS_KEY
 AWS_SECRET: AWS_SECRET_KEY
-S3_SOURCE_BUCKET: s3-athena-source
-S3_RESULT_BUCKET: s3-athena-result
+BUCKET_NAME: athena-test-bucket

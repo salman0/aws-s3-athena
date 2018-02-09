@@ -14,8 +14,7 @@ pip install -r requirements.txt
 ```yaml
 AWS_ACCESS: AWS_ACCESS_KEY
 AWS_SECRET: AWS_SECRET_KEY
-S3_SOURCE_BUCKET: RAW_FILES_WILL_GO_HERE
-S3_RESULT_BUCKET: RESULTS_WILL_GO_HERE
+BUCKET_NAME: athena-test-bucket
 ```
 
 ### Create bucket and upload data to S3
