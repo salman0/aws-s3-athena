@@ -1,23 +1,16 @@
 """
 Uploads mock data to S3 Bucket
 """
-
 import sys
 import boto3
-import yaml 
-
-def read_config(path):
-    """Build configuration from YAML file"""
-    with open(path, 'r') as ymlfile:
-        config = yaml.load(ymlfile)
-    return config
+import shared as helper
 
 def main():
         # Get configuration from yaml file.
-        config = read_config('.config.yml')
+        config = helper.read_config('.config.yml')
         target_bucket = config['S3_SOURCE_BUCKET']
 
-        # Connect to S3 client
+        # Connect to S3 client 
         # http://boto3.readthedocs.io/en/latest/reference/core/session.html#boto3.session.Session.client
         s3_client = boto3.client(
             service_name='s3',
@@ -31,9 +24,14 @@ def main():
         
         # Upload data files to s3
         # http://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.upload_file
-        s3_client.upload_file('./data/MOCK_DATA.json', target_bucket, 'data/json/MOCK_DATA.json')
-        s3_client.upload_file('./data/MOCK_DATA.csv', target_bucket, 'data/csv/MOCK_DATA.csv')
-        s3_client.upload_file('./data/MOCK_DATA.tsv', target_bucket, 'data/tsv/MOCK_DATA.tsv')
+        s3_client.upload_file('./data/MOCK_DATA.json', target_bucket, 'MOCK_DATA.json')
+        s3_client.upload_file('./data/MOCK_DATA.csv', target_bucket, 'MOCK_DATA.csv')
+        s3_client.upload_file('./data/MOCK_DATA.tsv', target_bucket, 'MOCK_DATA.tsv')
+
+        # Validate that each object is successfully uploaded into the bucket
+        # https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.list_objects
+        for obj in s3_client.list_objects(Bucket=target_bucket)['Contents']:
+            assert obj['Key'] in ['MOCK_DATA.json', 'MOCK_DATA.csv', 'MOCK_DATA.tsv']
 
 if __name__ == "__main__":
     sys.exit(main())
